@@ -1,4 +1,4 @@
-import logging
+# import logging
 from flask import Flask
 from flask_ask import Ask, statement, question
 import requests
@@ -9,10 +9,10 @@ apiKey = ''
 app = Flask(__name__)
 ask = Ask(app,"/")
 
-log = logging.getLogger()
-log.addHandler(logging.StreamHandler())
-log.setLevel(logging.DEBUG)
-logging.getLogger("flask_ask").setLevel(logging.DEBUG)
+# log = logging.getLogger()
+# log.addHandler(logging.StreamHandler())
+# log.setLevel(logging.DEBUG)
+# logging.getLogger("flask_ask").setLevel(logging.DEBUG)
 
 @ask.intent("MyNameIsIntent")
 def my_name_is(firstname):
@@ -26,22 +26,13 @@ def my_name_is(firstname):
 	
 	# print(playerName + " has overall K.D.A " + str(kpd) + " winrate " + str(winR) + " and total Kills " + str(kills) +  " and Wins are " + str(wins))
 
-	msg = "{firstname} has kill death average".format(firstname=firstname)
+	msg = str(firstname) + "has " + str(kills) + " and " + str(winR) + ". His total wins are " + str(wins)
 	 # kpd=kpd, winR = winR, kills = kills, wins = wins)
 	return statement(msg)
 
 
 if __name__ == '__main__':
 	app.run(debug=True)
-
-
-
-
-
-
 # pp = pprint.PrettyPrinter(indent=4)
 
-
-
 # pp.pprint()
-
